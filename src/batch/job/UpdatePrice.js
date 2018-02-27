@@ -72,11 +72,13 @@ class JobUpdatePrice {
       const productInfo = PageExtract.extract(product.url, pageContent);
 
       // Update Solr
+      if (!product.image) console.log('Image ' + product.hash);
       await PageExtract.updateIndex(productInfo, product);
 
       return true;
   	} catch(e) {
       if (e.statusCode == 403 || e.statusCode == 404) {
+        console.log('Delete ' + product.url);
         return SolrProduct.DAO.delete(product.hash);
       } else {
         console.log(e);
