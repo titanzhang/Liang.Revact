@@ -1,0 +1,50 @@
+node('NodeRaw') {
+
+  try {
+    stage ('Clone Source') {
+        checkout scm
+    }
+
+    stage('Production Config') {
+      configFileProvider([configFile(fileId: 'revact_config_api', variable: 'CONFIG_API')]) {
+        sh "cp \"${CONFIG_API}\" src/config/api.js"
+      }
+      configFileProvider([configFile(fileId: 'revact_config_server', variable: 'CONFIG_SERVER')]) {
+        sh "cp \"${CONFIG_SERVER}\" src/config/server.js"
+      }
+      configFileProvider([configFile(fileId: 'revact_config_site', variable: 'CONFIG_SITE')]) {
+        sh "cp \"${CONFIG_SITE}\" src/config/site.js"
+      }
+      configFileProvider([configFile(fileId: 'revact_config_solr', variable: 'CONFIG_SOLR')]) {
+        sh "cp \"${CONFIG_SOLR}\" src/config/solr.js"
+      }
+      configFileProvider([configFile(fileId: 'revact_entrypoint_batch', variable: 'ENTRYPOINT')]) {
+        sh "cp \"${ENTRYPOINT}\" entrypoint"
+      }
+    }
+
+    stage('Compile') {
+      def NODE_VERSION = '7.8'
+      docker.image("node:${NODE_VERSION}").inside {
+        sh 'npm install && npm run production:server && rm -rf node_modules && npm install --production'
+      }
+    }
+
+    stage('Build Docker image') {
+      sh 'cp build_config/batch.dockerfile .'
+      dir('.') {
+        def newImage = docker.build("revact-batch", "--build-arg NODE_ENV=production")
+        docker.withRegistry("https://239150759114.dkr.ecr.us-west-1.amazonaws.com", "ecr:us-west-1:aws-ecr-cred") {
+          newImage.push("${env.BUILD_ID}")
+          newImage.push("latest")
+        }
+      }
+    }
+
+  } finally {
+    stage('Cleanup') {
+      cleanWs notFailBuild: true
+    }
+  }
+
+}

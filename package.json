@@ -4,11 +4,11 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "production:client": "webpack --config webpack.prod.js",
+    "production:client": "webpack --config build_config/webpack.prod.js",
     "production:server": "BABEL_ENV=server babel src --out-dir ./build_server",
     "dev:server": "BABEL_ENV=server babel-node src/server.js --inspect",
-    "dev:client": "webpack-dev-server --config webpack.dev.js",
-    "dev:build": "webpack --config webpack.dev.js",
+    "dev:client": "webpack-dev-server --config build_config/webpack.dev.js",
+    "dev:build": "webpack --config build_config/webpack.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "if [ ! -e entrypoint ]; then echo 'build_server/server.js' > entrypoint; fi",
     "start": "node $(cat entrypoint)"
