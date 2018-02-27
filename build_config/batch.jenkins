@@ -31,7 +31,7 @@ node('NodeRaw') {
     }
 
     stage('Build Docker image') {
-      sh 'cp build_config/batch.dockerfile .'
+      sh 'cp build_config/batch.dockerfile ./Dockerfile'
       dir('.') {
         def newImage = docker.build("revact-batch", "--build-arg NODE_ENV=production")
         docker.withRegistry("https://239150759114.dkr.ecr.us-west-1.amazonaws.com", "ecr:us-west-1:aws-ecr-cred") {
