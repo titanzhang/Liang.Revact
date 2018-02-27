@@ -76,8 +76,12 @@ class JobUpdatePrice {
 
       return true;
   	} catch(e) {
-  		console.log(e);
-  		return false;
+      if (e.statusCode == 403 || e.statusCode == 404) {
+        return SolrProduct.DAO.delete(product.hash);
+      } else {
+        console.log(e);
+    		return false;
+      }
   	}
   }
 

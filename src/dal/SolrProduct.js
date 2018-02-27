@@ -4,6 +4,17 @@ const ProductDAO = {
 	serverName: 'product'
 };
 
+ProductDAO.delete = async function(urlHash) {
+	try {
+		const server = SolrManager.getServer(this.serverName);
+		await server.deleteByIDs([urlHash]);
+		return true;
+	} catch(e) {
+		console.log(e);
+		return false;
+	}
+};
+
 ProductDAO.add = function(product) {
 	try {
 		const server = SolrManager.getServer(this.serverName);

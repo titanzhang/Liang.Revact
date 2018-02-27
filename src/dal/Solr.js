@@ -35,6 +35,48 @@ Solr.prototype.getSlave = function() {
 	return this.slaveConfig[index];
 }
 
+Solr.prototype.deleteByIDs = async function(idList) {
+	// { delete: [idList] }
+	try {
+		const updateUrl = this.getMaster() + this.CMD_UPDATE;
+		const sendData = JSON.stringify({delete:idList});
+
+		const httpReturn = await CURL.post(updateUrl, sendData, this.TIMEOUT_UPDATE, 'application/json');
+		const jsonReturn = JSON.parse(httpReturn.data);
+		if (jsonReturn.error === undefined) {
+			return {
+				headers: httpReturn.headers,
+				data: jsonReturn
+			};
+		} else {
+			throw {message: 'Solr.deleteByIDs: ' + jsonReturn.error.msg};
+		}
+	} catch(e) {
+		throw {message: 'Solr.deleteByIDs: ' + e.message};
+	}
+};
+
+Solr.prototype.deleteByQuery = async function(searchTerm) {
+	// { delete: { query: "serchTerm" } }
+	try {
+		const updateUrl = this.getMaster() + this.CMD_UPDATE;
+		const sendData = JSON.stringify({delete:{query:searchTerm}});
+
+		const httpReturn = await CURL.post(updateUrl, sendData, this.TIMEOUT_UPDATE, 'application/json');
+		const jsonReturn = JSON.parse(httpReturn.data);
+		if (jsonReturn.error === undefined) {
+			return {
+				headers: httpReturn.headers,
+				data: jsonReturn
+			};
+		} else {
+			throw {message: 'Solr.deleteByQuery: ' + jsonReturn.error.msg};
+		}
+	} catch(e) {
+		throw {message: 'Solr.deleteByQuery: ' + e.message};
+	}
+};
+
 Solr.prototype.update = function(docList) {
 	return new Promise( (resolve, reject) => {
 		const updateUrl = this.getMaster() + this.CMD_UPDATE;
