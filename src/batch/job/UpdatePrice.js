@@ -4,7 +4,7 @@ const PageExtract = require('../../common/PageExtract');
 const SolrProduct = require('../../dal/SolrProduct');
 
 module.exports = function() {
-	const numRows = 10;
+	const numRows = 2;
 	const startIndex = 0;
 
 	const job = new JobUpdatePrice();
