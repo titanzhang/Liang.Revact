@@ -77,7 +77,10 @@ class JobUpdatePrice {
 
       return true;
   	} catch(e) {
-      if (e.statusCode == 403 || e.statusCode == 404) {
+      if (e.statusCode === 403) {
+        throw { message: 'JobUpdatePrice.updateProduct: blocked by Revzilla' };
+      }
+      if (e.statusCode === 404) {
         console.log('Delete ' + product.url);
         return SolrProduct.DAO.delete(product.hash);
       } else {
