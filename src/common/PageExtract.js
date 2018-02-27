@@ -49,6 +49,8 @@ module.exports = {
       } else { // Existing product
         if (product.price != existProduct.price) { // Price changed
           return updateProduct(productDO, historyDO);
+        } else if (!existProduct.image) {
+          return updateProduct(productDO);
         }
       }
     } catch(e) {
