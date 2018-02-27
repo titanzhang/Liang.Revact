@@ -1,0 +1,28 @@
+.pager {
+  padding-left: 0;
+  margin: 20px 0;
+  text-align: center;
+  list-style: none;
+}
+
+.pager li {
+  display: inline;
+  margin-left: 10px;
+}
+
+.pager li > a {
+  display: inline-block;
+  padding: 5px 14px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+
+  color: #337ab7;
+  text-decoration: none;
+}
+
+.pager .disabled > a {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+}

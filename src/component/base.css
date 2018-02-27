@@ -1,0 +1,100 @@
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+}
+
+/*div {
+  margin: 0px;
+  padding: 0px;
+}*/
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.col {
+  display: inline-block;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.col1 {
+  width: 10%;
+}
+
+.col1-5 {
+  width: 15%;
+}
+
+.col2 {
+  width: 20%;
+}
+
+.col3 {
+  width: 30%;
+}
+
+.col4 {
+  width: 40%;
+}
+
+.col5 {
+  width: 50%;
+}
+
+.col6 {
+  width: 60%;
+}
+
+.col7 {
+  width: 70%;
+}
+
+.col8 {
+  width: 80%;
+}
+
+.col9 {
+  width: 90%;
+}
+
+@media (min-width:768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+
+@media (min-width:992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width:1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+.main {
+  padding-top: 40px;
+}
+
+img {
+  vertical-align: middle;
+  border: 0;
+}
