@@ -77,15 +77,15 @@ module.exports = {
 
       // Get price
       let price = selector('div[data-js="StylizedMoney.money SkuSelector.priceRetail"]').text();
-      if (price === undefined) {
+      if (price === undefined || price.length === 0) {
         throw {message: 'Price not found in page'};
       }
       product.price = parseFloat(price.replace('$', ''));
 
       // Get MSRP
       let msrp = selector('div[data-js="SkuSelector.priceWas"]').text();
-      if (msrp === undefined) {
-        product.msrp = price;
+      if (msrp === undefined || msrp.length === 0) {
+        product.msrp = product.price;
       } else {
         product.msrp = parseFloat(msrp.replace('$', ''));
       }
@@ -96,7 +96,7 @@ module.exports = {
 
       // Get Description
       let description = selector('div[class="product-details__details"]').text();
-      if (description === undefined) {
+      if (description === undefined || description.length === 0) {
         throw {message: 'Description not found in page'};
       }
       description = Utils.deepReplace(/  /g, " ", description);
