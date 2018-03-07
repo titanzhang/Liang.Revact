@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -11,12 +10,8 @@ module.exports = {
   output: {
     filename: 'js/[name].js',
     publicPath: '/',
-    path: path.resolve(__dirname, 'build')
+    path: path.resolve(__dirname, '../build')
   },
-
-  plugins: [
-    new CleanWebpackPlugin(['build'])
-	],
 
 	module: {
 		rules: [
@@ -25,6 +20,13 @@ module.exports = {
         query: {
           presets: ["es2015", "react"]
         }
+      },
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+        	fallback: "style-loader",
+        	use: ["css-loader", "less-loader"]
+        })
       },
 			{
 				test: /\.css$/,

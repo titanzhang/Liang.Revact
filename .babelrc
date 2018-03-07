@@ -3,7 +3,7 @@
     "server": {
       "presets": ["react"],
       "plugins": [
-        [ "babel-plugin-transform-require-ignore", {"extensions": [".css"]} ]
+        [ "babel-plugin-transform-require-ignore", {"extensions": [".css", ".less"]} ]
       ]
     }
   }

@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "production:client": "webpack --config build_config/webpack.prod.js",
+    "production:client": "webpack --config build_config/webpack.prod.js && cp build/manifest.json src/",
     "production:server": "BABEL_ENV=server babel src --out-dir ./build_server",
     "dev:server": "BABEL_ENV=server babel-node src/server.js --inspect",
     "dev:client": "webpack-dev-server --config build_config/webpack.dev.js",
@@ -32,6 +32,8 @@
     "clean-webpack-plugin": "^0.1.18",
     "css-loader": "^0.28.10",
     "extract-text-webpack-plugin": "^3.0.2",
+    "less": "^3.0.1",
+    "less-loader": "^4.0.6",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "style-loader": "^0.20.2",
     "uglifyjs-webpack-plugin": "^1.2.0",

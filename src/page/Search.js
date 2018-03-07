@@ -5,7 +5,7 @@ const NavFooter = require('../component/NavFooter');
 const ProductGrid = require('../component/ProductGrid');
 const ProductInfoDialog = require('../component/ProductInfoDialog');
 const Pagination = require('../component/Pagination');
-require('../component/base.css');
+require('../component/base.less');
 
 class ContentSearch extends React.Component {
   constructor(props) {

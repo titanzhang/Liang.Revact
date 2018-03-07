@@ -33,7 +33,7 @@ class ProductInfo extends React.Component {
           <h4><a href={product.url}>{product.title}</a></h4>
         </div>
         <div className='productinfo-body'>
-          <img src={product.image} />
+          <img src={product.image} width='300'/>
           <p>${product.price}({(product.priceChangePercentage*100).toFixed(2)}%)</p>
           <div>{history.map( (h) => this.renderHistory(h) )}</div>
         </div>
