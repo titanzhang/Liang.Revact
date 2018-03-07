@@ -22,7 +22,7 @@ if (global && !global.Rev) {
   global.Rev = {
     loadResource: function(name) {
       if (!resourceMap) return null;
-      return this.resourceMap[name];
+      return resourceMap[name];
     },
 
     loadConfig: function(configName) {

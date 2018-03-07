@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "production:client": "webpack --config build_config/webpack.prod.js && cp build/manifest.json src/",
-    "production:server": "BABEL_ENV=server babel src --out-dir ./build_server",
+    "production:client": "webpack --config build_config/webpack.prod.js && cp build/manifest.json build_server/",
+    "production:server": "BABEL_ENV=server babel src --out-dir ./build_server --copy-files",
     "dev:server": "BABEL_ENV=server babel-node src/server.js --inspect",
     "dev:client": "webpack-dev-server --config build_config/webpack.dev.js",
     "dev:build": "webpack --config build_config/webpack.dev.js",
