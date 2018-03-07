@@ -12,6 +12,7 @@ app.use( (request, response, next) => {
 });
 
 // Routing rules
+app.get('/', require('./controller/SearchPageController'));
 app.get('/search', require('./controller/SearchPageController'));
 app.get('/product/extract/:url', require('./controller/ProductExtractApiController'));
 app.get('/product/info/:url', require('./controller/ProductInfoApiController'));
