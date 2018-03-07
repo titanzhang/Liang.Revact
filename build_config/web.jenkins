@@ -7,16 +7,16 @@ node('NodeRaw') {
 
     stage('Production Config') {
       configFileProvider([configFile(fileId: 'revact_config_api', variable: 'CONFIG_API')]) {
-        sh "cp \"${CONFIG_API}\" src/config/api.js"
+        sh "cp \"${CONFIG_API}\" build_server/config/api.js"
       }
       configFileProvider([configFile(fileId: 'revact_config_server', variable: 'CONFIG_SERVER')]) {
-        sh "cp \"${CONFIG_SERVER}\" src/config/server.js"
+        sh "cp \"${CONFIG_SERVER}\" build_server/config/server.js"
       }
       configFileProvider([configFile(fileId: 'revact_config_site', variable: 'CONFIG_SITE')]) {
-        sh "cp \"${CONFIG_SITE}\" src/config/site.js"
+        sh "cp \"${CONFIG_SITE}\" build_server/config/site.js"
       }
       configFileProvider([configFile(fileId: 'revact_config_solr', variable: 'CONFIG_SOLR')]) {
-        sh "cp \"${CONFIG_SOLR}\" src/config/solr.js"
+        sh "cp \"${CONFIG_SOLR}\" build_server/config/solr.js"
       }
       configFileProvider([configFile(fileId: 'revact_entrypoint_web', variable: 'ENTRYPOINT')]) {
         sh "cp \"${ENTRYPOINT}\" entrypoint"
