@@ -1,5 +1,5 @@
 const React = require('react');
-require('./ModalDialog.css');
+require('./ModalDialog.less');
 
 class ModalDialog extends React.Component {
   constructor(props) {

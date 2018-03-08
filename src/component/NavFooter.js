@@ -1,5 +1,5 @@
 const React = require('react');
-require('./NavFooter.css');
+require('./NavFooter.less');
 
 class NavFooter extends React.Component {
   render() {

@@ -1,5 +1,5 @@
 const React = require('react');
-require('./ProductInfo.css');
+require('./ProductInfo.less');
 
 class ProductInfo extends React.Component {
   constructor(props) {
@@ -30,11 +30,11 @@ class ProductInfo extends React.Component {
       <div>
         <div className='productinfo-header'>
           {this.renderCloseButton()}
-          <h4><a href={product.url}>{product.title}</a></h4>
+          <h4><a className='link' href={product.url}>{product.title}</a></h4>
         </div>
         <div className='productinfo-body'>
           <img src={product.image} width='300'/>
-          <p>${product.price}({(product.priceChangePercentage*100).toFixed(2)}%)</p>
+          <p className='productinfo-price'>${product.price}({(product.priceChangePercentage*100).toFixed(2)}%)</p>
           <div>{history.map( (h) => this.renderHistory(h) )}</div>
         </div>
       </div>

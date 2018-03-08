@@ -73,7 +73,7 @@ class ContentSearch extends React.Component {
         <NavHeader currentMenu={this.state.currentMenu}/>
         <div className='main'>
           <ProductGrid productList={this.state.productList} clickProduct={(url, product)=>this.clickProduct(url, product)} />
-          <nav><Pagination {...this.state.pagination} /></nav>
+          <Pagination {...this.state.pagination} />
           <ProductInfoDialog productInfo={this.state.productInfo} show={this.state.showProductDialog} hideModal={() => this.hideProductDialog()}/>
         </div>
         <NavFooter />

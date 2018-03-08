@@ -1,5 +1,5 @@
 const React = require('react');
-require('./Pagination.css');
+require('./Pagination.less');
 
 class Pagination extends React.Component {
   constructor(props) {
@@ -9,11 +9,11 @@ class Pagination extends React.Component {
   buildButton(text, link) {
     if (link) {
       return (
-        <li><a href={link}>{text}</a></li>
+        <li className='li'><a className='link' href={link}>{text}</a></li>
       );
     } else {
       return (
-        <li className='disabled'><a href='javascript:void(0)'>{text}</a></li>
+        <li className='li'><a className='link disabled' href='javascript:void(0)'>{text}</a></li>
       );
     }
   }
