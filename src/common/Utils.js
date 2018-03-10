@@ -2,12 +2,11 @@ const Utils = {};
 const XML2JS = require("xml2js");
 
 Utils.parseXML = function(content) {
-	const xml = {};
-
-	XML2JS.parseString(content, function(err, result) {
-		xml = result;
+	return new Promise( (resolve) => {
+		XML2JS.parseString(content, function(err, result) {
+			resolve(result);
+		});
 	});
-	return xml;
 };
 
 Utils.removeHTMLTags = function(html) {
